@@ -1,2 +1,2 @@
-# t-bank-trade
-AI driven trading app
+# FinAlly (t-bank-trade)
+AI-driven trading app
