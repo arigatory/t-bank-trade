@@ -1,2 +1,2 @@
-# finally
-FinAlly Capstone Project - LLM driven Trader Workstation for Simulated Trading
+# t-bank-trade
+AI driven trading app
