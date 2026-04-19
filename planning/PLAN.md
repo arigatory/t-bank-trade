@@ -39,7 +39,7 @@ They immediately see:
 - **View sparkline mini-charts** — price action beside each ticker, accumulated on the frontend from the SSE stream since page load
 - **Click a ticker** to see a larger detailed chart, with optional historical candles loaded via `MarketDataService.GetCandles`
 - **Buy and sell shares** — market orders via `SandboxService.PostSandboxOrder` (`OrderType.Market`, `OrderDirection.Buy`/`Sell`), instant fill at last price, no confirmation dialog
-- **Monitor their portfolio** — positions, cash, total value and P&L are fetched from `SandboxService.GetSandboxPortfolio`; shown as a treemap sized by weight and coloured by P&L, plus a P&L line chart tracking total portfolio value over time
+- **Monitor their portfolio** — positions, cash, total value and P&L are fetched from `SandboxService.GetSandboxPortfolio`; shown as a treemap sized by weight and colored by P&L, plus a P&L line chart tracking total portfolio value over time
 - **View a positions table** — ticker, quantity (lots × lot size), average cost, current price, unrealized P&L, % change
 - **Chat with the AI assistant** — ask about their portfolio, get analysis, and have the AI execute trades and manage the watchlist through natural language
 - **Manage the watchlist** — add/remove tickers manually or via the AI chat; the backend resolves each ticker to a `FIGI`/`InstrumentUid` via `InstrumentsService.FindInstrument`
@@ -48,7 +48,7 @@ They immediately see:
 
 - **Dark theme**: backgrounds around `#0d1117` or `#1a1a2e`, muted gray borders, no pure black
 - **Price flash animations**: brief green/red background highlight on price change, fading over ~500 ms via CSS transitions
-- **Connection status indicator**: a small coloured dot (green = connected, yellow = reconnecting, red = disconnected) visible in the header — reflects the health of the T-Invest gRPC stream, not just the SSE link
+- **Connection status indicator**: a small colored dot (green = connected, yellow = reconnecting, red = disconnected) visible in the header — reflects the health of the T-Invest gRPC stream, not just the SSE link
 - **Professional, data-dense layout**: inspired by Bloomberg/trading terminals — every pixel earns its place
 - **Responsive but desktop-first**: optimized for wide screens, functional on tablet
 
@@ -177,7 +177,7 @@ TINVEST_INITIAL_BALANCE_RUB=1000000
 LLM_MOCK=false
 ```
 
-### Behaviour
+### Behavior
 
 - The backend reads `.env` via `DotNetEnv` on startup (or the container receives it via `docker run --env-file .env`).
 - If `TINVEST_TOKEN` is missing → backend fails fast with a clear error at startup.
@@ -412,7 +412,7 @@ On first launch each is resolved via `InstrumentsService.FindInstrument` and per
 
 ### Client
 
-A thin `ILlmClient` in C# wraps an `HttpClient` pointed at OpenRouter's OpenAI-compatible `chat/completions` endpoint. Model: `openrouter/openai/gpt-oss-120b` with the Cerebras provider preference set in the request body.
+A thin `ILLMClient` in C# wraps an `HttpClient` pointed at OpenRouter's OpenAI-compatible `chat/completions` endpoint. Model: `openrouter/openai/gpt-oss-120b` with the Cerebras provider preference set in the request body.
 
 Auth: `Authorization: Bearer ${OPENROUTER_API_KEY}`.
 
@@ -474,7 +474,7 @@ FinAlly is prompted as "an AI trading assistant for the T-Invest platform" with 
 
 ### LLM Mock Mode
 
-With `LLM_MOCK=true`, `ILlmClient` returns canned structured responses keyed on the last user message. Used for E2E tests, dev without a key, and CI.
+With `LLM_MOCK=true`, `ILLMClient` returns canned structured responses keyed on the last user message. Used for E2E tests, dev without a key, and CI.
 
 ---
 
@@ -486,7 +486,7 @@ Single-page application with a dense, terminal-inspired layout. The specific com
 
 - **Watchlist panel** — grid/table with ticker, current price (flashing), daily change %, and a sparkline accumulated from SSE
 - **Main chart area** — larger chart for the selected ticker with candle history from `/api/candles/{ticker}` plus live overlay from SSE
-- **Portfolio heatmap** — treemap where each rectangle is a position, sized by weight, coloured by P&L
+- **Portfolio heatmap** — treemap where each rectangle is a position, sized by weight, colored by P&L
 - **P&L chart** — line chart of total portfolio value over time, fed by `/api/portfolio/history`
 - **Positions table** — ticker, shares, lots, avg cost, current price, unrealized P&L, % change
 - **Trade bar** — ticker field (autocomplete hitting `/api/instruments/search`), quantity in shares, buy / sell buttons; shows the lot size next to the quantity field so the user knows what rounds correctly
